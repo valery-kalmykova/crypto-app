@@ -1,0 +1,6 @@
+1. docker compose up
+2. для подключения призмы docker compose run frontend bash - зашли в консоль контейнера
+3. npx prisma migrate dev --name init
+
+&connect_timeout=300
+DATABASE_URL="postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@db:5432/${DATABASE_NAME}?schema=${DATABASE_NAME}&sslmode=prefer"

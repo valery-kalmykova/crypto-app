@@ -1,0 +1,23 @@
+.chip {
+  padding: 0 15px;
+  height: 30px;
+  font-size: 16px;
+  line-height: 30px;
+  border: 1px solid #6a6d78;
+  border-radius: 25px;
+  background-color: transparent;
+  margin: 10px 0;
+}
+
+.buttonClose {
+  padding-left: 10px;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.buttonClose:hover {
+  color: #fff;
+}
