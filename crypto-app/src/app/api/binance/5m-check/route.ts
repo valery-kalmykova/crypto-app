@@ -1,3 +1,5 @@
+import deleteWatchedCurrency from "@/actions/delete-watched-currency";
+import { deleteNotificationPrice } from "@/actions/update-watched-currencies";
 import prisma from "@/lib/clients/prisma";
 import { baseUrlFutures, destructureBinanceRes } from "@/lib/shared";
 import { Ialtcoins, AltcoinPrices } from "@/lib/types";
@@ -57,6 +59,32 @@ const sendTelegramNotification = async (message: string): Promise<void> => {
   );
 };
 
+// const deleteWatchedCurrency = async (name: string) => {
+//   await prisma.currency.delete({
+//     where: {
+//       name: String(name),
+//     },
+//   });
+// };
+
+// const deleteNotificationPrice = async (name: string, price: string) => {  
+//   const currency = await prisma.currency.findUnique({
+//     where: { name: name },
+//   });
+//   let newprices = currency?.prices!;
+//   newprices.splice(newprices.indexOf(price), 1);
+//   await prisma.currency.update({
+//     where: {
+//       name: String(name),
+//     },
+//     data: {
+//       prices: {
+//         set: newprices,
+//       },
+//     },
+//   });
+// }
+
 export async function GET(request: NextRequest) {
   const altcoins = await prisma.currency.findMany();
   const prices = await fetchAltcoinPrices(altcoins, "5m");
@@ -74,6 +102,11 @@ export async function GET(request: NextRequest) {
           await sendTelegramNotification(
             `${targetAltcoin} target price ${targetPrice[i]} reached.`
           );
+          if (targetPrice.length === 1) {
+            await deleteWatchedCurrency(targetAltcoin)
+          } else {
+            await deleteNotificationPrice(targetAltcoin, targetPrice[i])
+          }
           continue;
         }
       }

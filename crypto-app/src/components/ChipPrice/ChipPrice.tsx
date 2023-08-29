@@ -1,27 +1,20 @@
 "use client";
 
+import { deleteNotification } from "@/lib/shared";
 import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
 
 const ChipPrice = (props: {
   activeCurrency: string;
-  data: any;
+  data: { prices: string[] };
   currentPrice: string;
 }) => {
   const prices = props.data?.prices;
+  const activeCurrency = props.activeCurrency;
   const router = useRouter();
 
   const handleDelete = async (price: string) => {
-    if (prices!.length === 1) {
-      await fetch(`/api/currencies/${props.activeCurrency}`, {
-        method: "DELETE",
-      });
-    } else {
-      await fetch(`/api/currencies/${props.activeCurrency}`, {
-        method: "PATCH",
-        body: JSON.stringify({ price: price }),
-      });
-    }
+    deleteNotification({prices, price, activeCurrency})
     router.refresh();
   };
 

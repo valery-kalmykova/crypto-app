@@ -10,6 +10,7 @@ const SearchBar = ({ setSearchText, searchText, onlyWatched }: any) => {
         <input
           className={styles.input}
           placeholder="Search"
+          type="search"
           onChange={({ target }) => setSearchText(target.value)}
           value={searchText}
           disabled={onlyWatched}

@@ -3,9 +3,9 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
-import updateWatchedCurrencies from "@/actions/update-watched-currencies";
 import addWatchedCurrency from "@/actions/add-watched-currency";
 import getWatchedCurrenciesPrices from "@/actions/get-watched-currency-prices";
+import { addNotificationPrice } from "@/actions/update-watched-currencies";
 
 const Form = (props: { price: string; activeCurrency: string }) => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const Form = (props: { price: string; activeCurrency: string }) => {
 
     if (price !== "0") {
       if (currency) {
-        await updateWatchedCurrencies(props.activeCurrency, price!);
+        await addNotificationPrice(props.activeCurrency, price!);
       } else {
         await addWatchedCurrency(props.activeCurrency, price!);
       }
