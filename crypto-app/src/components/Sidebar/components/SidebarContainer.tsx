@@ -22,7 +22,7 @@ const SidebarContainer = (props: { sortedData: any[] }) => {
       );
       setAllCurrencies(newArr);
     }
-  }, [onlyWatched, searchText, props.sortedData]);
+  }, [onlyWatched, searchText, props.sortedData, allCurrencies]);
 
   return (
     <div>

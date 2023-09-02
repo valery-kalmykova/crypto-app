@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 const ChipPrice = (props: {
   activeCurrency: string;
-  data: { prices: string[] };
+  data: any;
   currentPrice: string;
 }) => {
   const prices = props.data?.prices;

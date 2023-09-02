@@ -5,6 +5,7 @@ services:
     build:
       context: ./crypto-app
       dockerfile: ../Dockerfile.prod
+    image: valerykalmykova/crypto-app:01
     ports:
       - ${APP_PORT}:${APP_PORT}
     environment:
