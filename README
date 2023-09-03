@@ -1,6 +1,16 @@
-1. docker compose up
-2. для подключения призмы docker compose run frontend bash - зашли в консоль контейнера
-3. npx prisma migrate dev --name init
+Проверить .env: DATABASE_PORT=5001, в урл @db:5432, лежит рядом с compose, не внутри
 
-&connect_timeout=300
-DATABASE_URL="postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@db:5432/${DATABASE_NAME}?schema=${DATABASE_NAME}&sslmode=prefer"
+Собрать image локально
+docker compose build crypto
+
+Запушить в хаб
+docker compose push crypto
+
+Запуллить на сервере
+- актуальная ссылка в хабе
+
+На сервере перейти в папку проекта (в нем актуальный .env и compose)
+docker compose up -d --no-build
+
+Для локального запуска в dev:
+собрать db на 5432, положить .env внутрь проекта, изменить @db:5432 на @localhost:5432
