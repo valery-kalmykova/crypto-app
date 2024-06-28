@@ -1,25 +1,20 @@
-"use client";
-
 import styles from "../styles.module.css";
-import Link from "next/link";
+import CurrencyItem from "./CurrencyItem";
 
-const CurreciesList = ({ allCurrencies }: any) => {
-  return (
-    <ul className={styles.list}>
-      {Object.values(allCurrencies).map((item: any, i: any) => {
-        return (
-          <Link href={`/${item.symbol}`} key={i} className={styles.itemLink}>
-            <li
-              className={styles.item}
-              style={item.checked && { color: "#90caf9" }}
-            >
-              {item.symbol}
-            </li>
-          </Link>
-        );
-      })}
-    </ul>
-  );
+const CurreciesList = ({ allCurrencies, searchText, onlyWatched }: any) => {
+  const items: any = [];
+
+  allCurrencies.forEach((element: any) => {
+    if (onlyWatched && !element.checked) {
+      return;
+    }
+    if (element.symbol.toLowerCase().indexOf(searchText.toLowerCase()) === -1) {
+      return;
+    }
+    items.push(<CurrencyItem item={element} key={element.symbol} />);
+  });
+
+  return <ul className={styles.list}>{items}</ul>;
 };
 
 export default CurreciesList;

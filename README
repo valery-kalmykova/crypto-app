@@ -1,3 +1,4 @@
+Для прод:
 Проверить .env: DATABASE_PORT=5001, в урл @db:5432, лежит рядом с compose, не внутри
 
 Собрать image локально
@@ -5,12 +6,22 @@ docker compose build crypto
 
 Запушить в хаб
 docker compose push crypto
+Или копироватьлокально в файл
+docker save -o C:\Users\valer\dev\crypto-app valerykalmykova/crypto-app:01
 
 Запуллить на сервере
 - актуальная ссылка в хабе
+Или скопировать файл на сервере
+scp C:\Users\valer\dev\crypto-app\Usersvalerdevcrypto-app root@185.178.47.168:/root/app
+Загрузить image в docker
+docker load -i /root/app/Usersvalerdevcrypto-app
 
-На сервере перейти в папку проекта (в нем актуальный .env и compose)
+На сервере перейти в папку проекта (в нем актуальный .env и compose + образ postgres)
 docker compose up -d --no-build
 
+Для копирования файлов с компа на сервер
+scp C:\Users\valer\dev\crypto-app\docker-compose.yml root@185.178.47.168:/root/app
+
 Для локального запуска в dev:
-собрать db на 5432, положить .env внутрь проекта, изменить @db:5432 на @localhost:5432
+собрать db на DATABASE_PORT=5432, положить .env внутрь проекта, изменить @db:5432 на @localhost:5432 в DATABASE_URL
+в .env.example внутри папки верно, туда добавить тг креды
