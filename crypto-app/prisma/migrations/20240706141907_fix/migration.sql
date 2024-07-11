@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Currency" ALTER COLUMN "lastTrendPrice" DROP NOT NULL,
+ALTER COLUMN "lastTrendPriceTime" DROP NOT NULL,
+ALTER COLUMN "trendStep" DROP NOT NULL,
+ALTER COLUMN "trendType" DROP NOT NULL;

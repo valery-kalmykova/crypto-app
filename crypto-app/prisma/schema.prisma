@@ -14,7 +14,10 @@ model Currency {
   id        Int      @id @default(autoincrement())
   name      String @unique
   prices    String[]
-  trendFlag  Boolean @default(false)
+  lastTrendPrice String?
+  lastTrendPriceTime String?
+  trendStep String?
+  trendType String?
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
 }

@@ -4,7 +4,7 @@ import { deleteNotification } from "@/lib/shared";
 import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
 
-const ChipPrice = (props: {
+const ChipTrend = (props: {
   activeCurrency: string;
   data: any;
   currentPrice: string;
@@ -12,7 +12,6 @@ const ChipPrice = (props: {
   const prices = props.data?.prices;
   const activeCurrency = props.activeCurrency;
   const router = useRouter();
-  console.log(props.data);
 
   const handleDelete = async (price: string) => {
     deleteNotification({ prices, price, activeCurrency });
@@ -45,4 +44,4 @@ const ChipPrice = (props: {
   );
 };
 
-export default ChipPrice;
+export default ChipTrend;
